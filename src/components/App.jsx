@@ -5,7 +5,7 @@ const App = () => {
     return (
         <div>
             <nav className="navigation-bar">
-                <h1>ZOOHO</h1>
+                <h1>EPIKCART</h1>
                 <div className="links-bar">
                     <Link to='/'>Home</Link>
                     <Link to='shop'>Shop</Link>
