@@ -45,7 +45,6 @@ function Shop() {
                     <p className="description">{card.description}</p>
                     <p><strong>${card.price}</strong></p>
                     <Items />
-                    <button>Add to cart</button>
                 </div>
             ))}
         </div>

@@ -8,16 +8,20 @@ const Items = () => {
     }
 
     return (
-        <div>
-            <button onClick={() => setQuantity(quantity - 1)}>-</button>
-            <label htmlFor="items">
-                <input
-                    name="items" 
-                    value={quantity}
-                    onChange={handleChange}
-                />
-            </label>
-            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+        <div className="items">
+            <div className="quantity">
+                <button onClick={() => setQuantity(quantity - 1)}>-</button>
+                <label htmlFor="items">
+                    <input
+                        name="items" 
+                        value={quantity}
+                        onChange={handleChange}
+                    />
+                </label>
+                <button onClick={() => setQuantity(quantity + 1)}>+</button>
+            </div>
+
+            <button className="add-cart">Add to cart</button>
         </div>
     )
 };
