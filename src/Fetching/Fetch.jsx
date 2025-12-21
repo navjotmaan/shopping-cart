@@ -33,16 +33,16 @@ function Fetch() {
         return () => controller.abort();
     }, []);
 
-    if (loading) return <p>Loading ...</p>
+    if (loading) return <p className="loading">Loading ...</p>
 
     return (
         <div className="shop">
             {cards.map((card) => (
-                <div key={card.id}>
-                    <img src={card.img} alt={card.title} width='100' />
-                    <p>{card.title}</p>
-                    <p>{card.description.substring(0, 100)}</p>
-                    <p><strong>{card.price}</strong></p>
+                <div key={card.id} className="product">
+                    <img src={card.img} alt={card.title} className="picture"/>
+                    <p><strong>{card.title}</strong></p>
+                    <p className="description">{card.description}</p>
+                    <p><strong>${card.price}</strong></p>
                 </div>
             ))}
         </div>
