@@ -1,8 +1,8 @@
 import App from './components/App';
 import Home from './components/Home';
-import Shop from './components/Shop';
 import Cart from './components/Cart';
 import Error from './components/Error';
+import Shop from './components/Shop';
 
 const routes = [
     {
