@@ -5,22 +5,24 @@
   background-color: #003049;
   width: 100%;
   height: 15vh;
+  box-shadow: 0px 5px 5px rgb(59, 58, 58);
 }
 
 h1 {
-  margin-left: 20px;
+  margin-left: 30px;
   color: #fca311;
   font-size: 40px;
+  letter-spacing: 3px;
 }
 
-a {
+.links-bar a {
   text-decoration: none;
   font-size: 20px;
   color: #e5e5e5;
   padding-right: 60px;
 }
 
-a:hover {
+.links-bar a:hover {
   color: #669bbc;
 }
 
@@ -47,13 +49,15 @@ a:hover {
 }
 
 .shopping-girl {
-  text-align: right;
-  margin-right: 50px;
-  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+  margin-bottom: 0;
 }
 
 .shopping-girl img {
   height: 90vh;
+  object-fit: contain;
 }
 
 .description {
@@ -67,4 +71,43 @@ a:hover {
 .loading {
   text-align: center;
   font-size: 30px;
+}
+
+.home-content {
+  margin-top: 40px;
+  text-align: center;
+}
+
+h2 {
+  color: #5898c0;
+  font-size: 50px;
+  letter-spacing: 2px;
+}
+
+.home-content p {
+  font-size: 30px;
+  letter-spacing: 3px;
+  line-height: 50px;
+  width: 90%;
+}
+
+.home-content button {
+  padding: 10px 30px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #f3689b;
+  color: white;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.home-content button a {
+  text-decoration: none;
+  color: white;
+}
+
+.home-content button:hover {
+  cursor: pointer;
+  background-color: #f74586;
 }
