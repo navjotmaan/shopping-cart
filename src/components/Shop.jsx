@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import Items from "./Items";
 
 function Shop() {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const { addToCart } = useOutletContext();
 
     useEffect(() => {
         const controller = new AbortController();
@@ -43,10 +46,12 @@ function Shop() {
             {cards.map((card) => (
                 <Items 
                     key={card.id}
+                    id={card.id}
                     image={card.img} 
                     title={card.title} 
                     description={card.description}
                     price={card.price} 
+                    addToCart={addToCart}
                 />
             ))}
         </div>
