@@ -22,6 +22,12 @@ const App = () => {
         });
     }
 
+    function removeFromCart(productId) {
+        setCartItems((prevItems) => {
+            return prevItems.filter((item) => item.id !== productId);
+        });
+    }
+
     return (
         <div>
             <nav className="navigation-bar">
@@ -33,7 +39,7 @@ const App = () => {
                 </div>
             </nav>
 
-            <Outlet context={{cartItems, addToCart}} />
+            <Outlet context={{ cartItems, addToCart, removeFromCart }} />
         </div>
     )
 };
