@@ -4,21 +4,27 @@ const Cart = () => {
     const { cartItems, removeFromCart } = useOutletContext();
 
     return (
-        <div>
-            <h2>Your Cart</h2>
+        <div className="cart-page">
+            <h2 className="your-cart">Your Cart</h2>
 
             {cartItems.length === 0 ? (
-                <p>Your cart is empty</p>
+                <p className="empty">your cart is empty</p>
             ) : (
-                    cartItems.map((item) => (
-                        <div key={item.id}>
-                            <img src={item.image} alt={item.title} width="100px" />
-                            <p>{item.title}</p>
-                            <p>${item.price}</p>
+                <div className="cart-items">
+                    {cartItems.map((item) => (
+                        <div key={item.id} className="cart-product">
+                            <img src={item.image} alt={item.title} width="120px" />
+                            <div>
+                            <strong><p>{item.title}</p></strong>
+                            <strong><p>${item.price}</p></strong>
+                           
                             <p>Quantity: {item.quantity}</p>
-                            <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                            <button onClick={() => removeFromCart(item.id)} className="remove">Remove</button>
+                            
+                            </div>
                         </div>
-                    ))
+                    ))}
+                </div>
                 )}
         </div>
     )
