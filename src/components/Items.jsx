@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Items = ({image, title, description, price}) => {
+const Items = ({id, image, title, description, price, addToCart}) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleChange = (e) => {
@@ -19,7 +19,7 @@ const Items = ({image, title, description, price}) => {
 
             <div className="items">
                 <div className="quantity">
-                    <button onClick={() => setQuantity(Math.max(0, quantity - 1))}>-</button>
+                    <button type="button" onClick={() => setQuantity(Math.max(0, quantity - 1))}>-</button>
                     <label htmlFor="items">
                         <input
                             type="number"
@@ -28,10 +28,10 @@ const Items = ({image, title, description, price}) => {
                             onChange={handleChange}
                         />
                     </label>
-                    <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                    <button type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
                 </div>
 
-                <button className="add-cart">Add to cart</button>
+                <button className="add-cart" onClick={() => addToCart({id, image, title, price, quantity})}>Add to cart</button>
             </div>
         </div>
     )
