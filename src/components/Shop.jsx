@@ -4,13 +4,17 @@ import Items from "./Items";
 function Shop() {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
 
         fetch("https://fakestoreapi.com/products", {signal})
-        .then((res) => res.json())
+        .then((res) => {
+            if (!res.ok) throw new Error("Failed to fetch products");
+            return res.json();
+        })
         .then((data) => {
             const products = data.map((product) => ({
                 id: product.id,
@@ -23,29 +27,27 @@ function Shop() {
             setLoading(false);
         })
         .catch((err) => {
-            if (err.name === 'AbortError') {
-                return;
-            } else {
-                console.error('Fetch error:', err);
-                setLoading(false);
-            }
+            if (err.name === 'AbortError') return;
+            setError(err.message);
+            setLoading(false);
         });
 
         return () => controller.abort();
     }, []);
 
     if (loading) return <p className="loading">Loading ...</p>
+    if (error) return <p className="error">Error: {error}</p>;
 
     return (
         <div className="shop">
             {cards.map((card) => (
-                <div key={card.id} className="product">
-                    <img src={card.img} alt={card.title} className="picture"/>
-                    <p><strong>{card.title}</strong></p>
-                    <p className="description">{card.description}</p>
-                    <p><strong>${card.price}</strong></p>
-                    <Items />
-                </div>
+                <Items 
+                    key={card.id}
+                    image={card.img} 
+                    title={card.title} 
+                    description={card.description}
+                    price={card.price} 
+                />
             ))}
         </div>
     )
