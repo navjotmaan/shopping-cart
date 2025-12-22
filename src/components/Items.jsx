@@ -4,8 +4,17 @@ const Items = ({id, image, title, description, price, addToCart}) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleChange = (e) => {
-        const val = parseInt(e.target.value);
-        setQuantity(isNaN(val) ? 0 : val);
+        const val = e.target.value;
+
+        if (val === "") {
+            setQuantity("");
+            return;
+        }
+
+        const parseVal = parseInt(val);
+        if (!isNaN(parseVal) && parseVal >= 0) {
+            setQuantity(parseVal);
+        }
     };
 
     return (
@@ -31,7 +40,12 @@ const Items = ({id, image, title, description, price, addToCart}) => {
                     <button type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
                 </div>
 
-                <button className="add-cart" onClick={() => addToCart({id, image, title, price, quantity})}>Add to cart</button>
+                <button className="add-cart" 
+                onClick={() => {
+                    if (quantity > 0) {
+                        addToCart({id, image, title, price, quantity})
+                }}}
+                >Add to cart</button>
             </div>
         </div>
     )
