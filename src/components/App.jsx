@@ -1,7 +1,27 @@
 import { Link, Outlet } from "react-router-dom";
+import { useState } from "react";
 import '../App.css'
 
 const App = () => {
+    const [cartItems, setCartItems] = useState([]);
+
+    function addToCart(newItem) {
+    
+        setCartItems((prevItems) => {
+            const isItemInCart = prevItems.find((item) => item.title === newItem.title);
+
+            if (isItemInCart) {
+                return prevItems.map((item) =>
+                    item.title === newItem.title
+                        ? { ...item, quantity: item.quantity + newItem.quantity }
+                        : item
+                );
+            }
+
+            return [...prevItems, newItem];
+        });
+    }
+
     return (
         <div>
             <nav className="navigation-bar">
@@ -9,11 +29,11 @@ const App = () => {
                 <div className="links-bar">
                     <Link to='/'>Home</Link>
                     <Link to='shop'>Shop</Link>
-                    <Link to='cart'>Cart</Link>
+                    <Link to='cart'>Cart <sup>{cartItems.length}</sup></Link>
                 </div>
             </nav>
 
-            <Outlet />
+            <Outlet context={{cartItems, addToCart}} />
         </div>
     )
 };
