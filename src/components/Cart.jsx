@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 
 const Cart = () => {
-    const { cartItems } = useOutletContext();
+    const { cartItems, removeFromCart } = useOutletContext();
 
     return (
         <div>
@@ -16,7 +16,7 @@ const Cart = () => {
                             <p>{item.title}</p>
                             <p>${item.price}</p>
                             <p>Quantity: {item.quantity}</p>
-                            <button>Remove</button>
+                            <button onClick={() => removeFromCart(item.id)}>Remove</button>
                         </div>
                     ))
                 )}
