@@ -28,6 +28,18 @@ const App = () => {
         });
     }
 
+    function updateQuantity(productId, amount) {
+        setCartItems((prevItems) => {
+            return prevItems.map((item) => {
+                if (item.id === productId) {
+                    const newQuantity = Math.max(1, item.quantity + amount);
+                    return { ...item, quantity: newQuantity };
+                }
+                return item;
+            });
+        });
+    }
+
     return (
         <div>
             <nav className="navigation-bar">
@@ -39,7 +51,7 @@ const App = () => {
                 </div>
             </nav>
 
-            <Outlet context={{ cartItems, addToCart, removeFromCart }} />
+            <Outlet context={{ cartItems, addToCart, removeFromCart, updateQuantity }} />
         </div>
     )
 };
