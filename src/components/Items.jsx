@@ -19,7 +19,7 @@ const Items = ({id, image, title, description, price, addToCart}) => {
 
     return (
         <div className="card">
-            <div className="product">
+            <div className="product" data-testid="product-card">
                 <img src={image} alt={title} className="picture"/>
                 <p><strong>{title}</strong></p>
                 <p className="description">{description}</p>
