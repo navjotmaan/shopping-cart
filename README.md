@@ -1,18 +1,27 @@
-[live preview](https://shopping-cart-rho-lilac.vercel.app/)
+# Shopping-Cart
 
-# React + Vite
+A mini-shopping application featuring real-time state management and client-side routing.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**[Live preview](https://shopping-cart-rho-lilac.vercel.app/)**
 
-Currently, two official plugins are available:
+## Tech-stack
+- **Framework:** React + Vite
+- **Routing:** React Router
+- **Testing:** Vitest + React Testing Library
+- **API:** [FakeStore API](https://fakestoreapi.com/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+* **Dynamic Navigation:** Seamless client-side routing between Home, Shop, and Cart.
+* **Live API Integration:** Fetches and displays real-time product data.
+* **Interactive Cart:**
+    * Add/Remove items.
+    * Real-time quantity updates.
+    * Persistent cart count in the navigation bar.
+* **Test Driven:** Unit tests ensuring component reliability.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting started
+``` 
+  npm install
+  npm run dev
+  npm test
+```
