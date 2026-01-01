@@ -13,10 +13,11 @@ test('navigates to Shop, then goes to Cart', async () => {
 
     render(<RouterProvider router={router} />);
 
-    const shopLink = screen.getByRole('link', { name: /shopping/i });
-    await user.click(shopLink);
+    const shopLink = screen.getAllByRole('link', { name: /shop/i });
+    await user.click(shopLink[0]);
 
     expect(router.state.location.pathname).toBe('/shop');
+    expect(shopLink).toHaveLength(2);
 
     const cartLink = screen.getByRole('link', { name: /cart/i });
     await user.click(cartLink);
