@@ -1,7 +1,8 @@
 import { useOutletContext } from "react-router-dom";
+import type { CartContext } from "./App.js";
 
 const Cart = () => {
-    const { cartItems, removeFromCart, updateQuantity } = useOutletContext();
+    const { cartItems, removeFromCart, updateQuantity } = useOutletContext<CartContext>();
 
     const totalPrice = cartItems.reduce((acc, item) => {
         return acc + (item.price * item.quantity);

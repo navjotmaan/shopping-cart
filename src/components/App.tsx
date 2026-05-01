@@ -2,10 +2,29 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import '../App.css'
 
-const App = () => {
-    const [cartItems, setCartItems] = useState([]);
+export interface Product {
+    id: number;
+    image: string;
+    title: string;
+    price: number;
+    description?: string;
+}
 
-    function addToCart(newItem) {
+export interface CartItem extends Product {
+    quantity: number;
+}
+
+export interface CartContext {
+    cartItems: CartItem[];
+    addToCart: (newItem: CartItem) => void;
+    removeFromCart: (productId: number) => void;
+    updateQuantity: (productId: number, amount: number) => void;
+}
+
+const App = () => {
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+    function addToCart(newItem: CartItem) {
     
         setCartItems((prevItems) => {
             const isItemInCart = prevItems.find((item) => item.title === newItem.title);
@@ -22,13 +41,13 @@ const App = () => {
         });
     }
 
-    function removeFromCart(productId) {
+    function removeFromCart(productId: number) {
         setCartItems((prevItems) => {
             return prevItems.filter((item) => item.id !== productId);
         });
     }
 
-    function updateQuantity(productId, amount) {
+    function updateQuantity(productId: number, amount: number) {
         setCartItems((prevItems) => {
             return prevItems.map((item) => {
                 if (item.id === productId) {
@@ -38,6 +57,10 @@ const App = () => {
                 return item;
             });
         });
+    }
+
+    const contextValue: CartContext = {
+        cartItems, addToCart, removeFromCart, updateQuantity
     }
 
     return (
@@ -51,7 +74,7 @@ const App = () => {
                 </div>
             </nav>
 
-            <Outlet context={{ cartItems, addToCart, removeFromCart, updateQuantity }} />
+            <Outlet context={contextValue} />
         </div>
     )
 };

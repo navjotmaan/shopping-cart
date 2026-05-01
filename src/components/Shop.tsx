@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import Items from "./Items";
+import Items from "./Items.js";
+import type { CartItem, Product } from "./App.js";
+
+interface Add {
+    addToCart: (newItem: CartItem) => void;
+}
 
 function Shop() {
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { addToCart } = useOutletContext();
+    const { addToCart } = useOutletContext<Add>();
 
     useEffect(() => {
         const controller = new AbortController();
@@ -19,11 +24,11 @@ function Shop() {
             return res.json();
         })
         .then((data) => {
-            const products = data.map((product) => ({
+            const products = data.map((product: any) => ({
                 id: product.id,
-                img: product.image,
+                image: product.image,
                 title: product.title,
-                description: product.description,
+                description: product.description || "",
                 price: product.price,
             }));
             setCards(products);
@@ -47,9 +52,9 @@ function Shop() {
                 <Items 
                     key={card.id}
                     id={card.id}
-                    image={card.img} 
+                    image={card.image} 
                     title={card.title} 
-                    description={card.description}
+                    description={card.description || ""}
                     price={card.price} 
                     addToCart={addToCart}
                 />

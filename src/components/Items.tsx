@@ -1,13 +1,18 @@
 import { useState } from "react";
+import type { Product, CartItem } from "./App.js";
 
-const Items = ({id, image, title, description, price, addToCart}) => {
+interface ItemProps extends Product {
+    addToCart: (newItem: CartItem) => void;
+}
+
+const Items = ({id, image, title, description, price, addToCart}: ItemProps) => {
     const [quantity, setQuantity] = useState(1);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
 
         if (val === "") {
-            setQuantity("");
+            setQuantity(0);
             return;
         }
 
@@ -43,7 +48,7 @@ const Items = ({id, image, title, description, price, addToCart}) => {
                 <button className="add-cart" 
                 onClick={() => {
                     if (quantity > 0) {
-                        addToCart({id, image, title, price, quantity})
+                        addToCart({id, image, title, description: description || "", price, quantity})
                 }}}
                 >Add to cart</button>
             </div>
