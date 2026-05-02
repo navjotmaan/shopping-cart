@@ -1,25 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import '../App.css'
-
-export interface Product {
-    id: number;
-    image: string;
-    title: string;
-    price: number;
-    description?: string;
-}
-
-export interface CartItem extends Product {
-    quantity: number;
-}
-
-export interface CartContext {
-    cartItems: CartItem[];
-    addToCart: (newItem: CartItem) => void;
-    removeFromCart: (productId: number) => void;
-    updateQuantity: (productId: number, amount: number) => void;
-}
+import Navbar from "./Navbar.js";
+import type { CartContext, CartItem } from "./Interface.js";
 
 const App = () => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -65,14 +47,7 @@ const App = () => {
 
     return (
         <div>
-            <nav className="navigation-bar">
-                <h1>EPIKCART</h1>
-                <div className="links-bar">
-                    <Link to='/'>Home</Link>
-                    <Link to='shop'>Shop</Link>
-                    <Link to='cart'>Cart <sup>{cartItems.length}</sup></Link>
-                </div>
-            </nav>
+            <Navbar cartItems={cartItems} />
 
             <Outlet context={contextValue} />
         </div>

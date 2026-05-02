@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Items from "./Items.js";
-import type { CartItem, Product } from "./App.js";
+import type { CartItem, Product } from "./Interface.js";
 
 interface Add {
     addToCart: (newItem: CartItem) => void;
@@ -43,11 +43,11 @@ function Shop() {
         return () => controller.abort();
     }, []);
 
-    if (loading) return <p className="loading">Loading ...</p>
-    if (error) return <p className="error">Error: {error}</p>;
+    if (loading) return <p className="text-center mt-50">Loading ...</p>
+    if (error) return <p className="text-center mt-50">Error: {error}</p>;
 
     return (
-        <div className="shop">
+        <div className="flex flex-wrap gap-10 justify-center mx-20 my-40">
             {cards.map((card) => (
                 <Items 
                     key={card.id}
