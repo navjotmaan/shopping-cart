@@ -27,7 +27,7 @@ const Home = () => {
                 <p className='mt-4 text-lg md:text-xl md:w-[60%] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]'>
                     We’ve scouted the unique and the necessary so you don't have to. Shop the essentials you won't find anywhere else.
                 </p>
-                <button className='mt-8 w-50 bg-[#ecf39e] text-black font-bold text-lg px-6 py-2 rounded-xl transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-[#d4e17a]'>
+                <button className='mt-8 mb-20 w-50 bg-[#ecf39e] text-black font-bold text-lg px-6 py-2 rounded-xl transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-[#d4e17a]'>
                     <Link to="shop">Start Shopping</Link>
                 </button>
             </div>

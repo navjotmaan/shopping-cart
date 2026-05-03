@@ -19,7 +19,7 @@ const Items = ({id, image, title, description, price, addToCart}: ItemProps) => 
     };
 
     return (
-        <div className="flex flex-col justify-center items-center border p-3 rounded-lg w-[500px] shadow-md">
+        <div className="flex flex-col justify-center items-center border p-3 rounded-lg max-w-[500px] shadow-md">
             <div className="text-center" data-testid="product-card">
                 <img src={image} alt={title} className="w-[200px] m-auto"/>
                 <p className="py-5"><strong>{title}</strong></p>
@@ -27,7 +27,7 @@ const Items = ({id, image, title, description, price, addToCart}: ItemProps) => 
                 <p className="md:py-5 py-2"><strong>${price}</strong></p>
             </div>
 
-            <div className="flex gap-7 justify-center items-center">
+            <div className="flex md:flex-row flex-col gap-3 md:gap-7 justify-center items-center">
                 <div className="flex items-center gap-3">
                     <button type="button" onClick={() => setQuantity(Math.max(0, quantity - 1))} className="bg-[#5898c0] text-white font-bold rounded-[50%] cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110 flex px-3 py-1">-</button>
                     <label htmlFor="items">
